@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkout Page</title>
+    
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+  </head>
+  <body>
+        <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><a href="/account/"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="/cart/"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="/checkout/"><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href="/login/"><i class="fa fa-user"></i> Login</a></li>{{request.session.email}}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <ul class="list-unstyled list-inline">
+                            <li class="dropdown dropdown-small">
+                                    <a  href="/?logout=0">logout</a>
+                                                    
+                            </li>
+
+                            <li class="dropdown dropdown-small">
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#">
+                                <span class="key">language :</span><span class="value">English </span></a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End header area -->
+    
+    <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="./"><img src="{% static 'img/logo.png' %}"></a></h1>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="shopping-item">
+                            <a href="/cart/">Cart - <span class="cart-amunt">Rs {{order_total}}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{{order_quan}}</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End site branding area -->
+        
+    
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div> 
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/shopall/">Shop page</a></li>
+                        <li ><a href="/cart/">Cart</a></li>
+                        <li><a href="/checkout/">Checkout</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>  
+            </div>
+        </div>
+    </div> <!-- End mainmenu area -->
+   
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Checkout</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="single-product-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title">Search Products</h2>
+                        <form action="">
+                            <input type="text" placeholder="Search products...">
+                            <input type="submit" value="Search">
+                        </form>
+                    </div>
+                    
+                    <div class="single-sidebar">
+                        
+                    </div>
+                    
+                    <div class="single-sidebar">
+                        <h2 class="sidebar-title"></h2>
+                    </div>
+                </div>
+                <p>{{bought}}
+                    <h1>{{message1}}</h1>
+                    <h1>{{print}}</h1>
+                    {{check}}
+                <div class="col-md-8">
+                    <div class="product-content-right">
+                        <div class="woocommerce">
+                            <!-- <p>If you have shopped with us before, please click below to login If you are a new customer please proceed to the Billing &amt; Shipping section.</p>
+                            <div class="woocommerce-info">Returning customer? <a href="/login/">Click here to login</a>
+                            </div> -->
+                            
+
+                            <!-- <div class="woocommerce-info">Have a coupon? <a class="showcoupon" data-toggle="collapse" href="#coupon-collapse-wrap" aria-expanded="false" aria-controls="coupon-collapse-wrap">Click here to enter your code</a>
+                            </div> -->
+
+                            <form id="coupon-collapse-wrap"  class="checkout_coupon collapse">
+
+                                <p class="form-row form-row-first">
+                                    <input type="text" value="" id="coupon_code" placeholder="Coupon code" class="input-text" name="coupon_code">
+                                </p>
+
+                                <p class="form-row form-row-last">
+                                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
+                                </p>
+
+                                <div class="clear"></div>
+                            </form>
+
+                            <form class="checkout" method="POST">
+                                {% csrf_token %}
+
+                                <div id="customer_details" class="col2-set">
+                                    <div class="col-1">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3>Billing Details</h3>
+                                            <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+                                                <label class="" for="billing_country">Country <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <select class="country_to_state country_select" id="billing_country" name="billing_country">
+                                                    <option selected="selected" value="IN" >India</option>
+                                                </select>
+                                            </p>
+                                        
+                                                
+
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">Full Name <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" required value="{{name}}" placeholder="Enter your Name" name="name" class="input-text ">
+                                            </p>            
+                                            <div class="clear"></div>
+                                                                    
+
+                                            <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
+                                                <label class="" for="billing_address_1">Address <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" required value="{{address}}" placeholder="Enter your address" id="billing_address_1" name="address" class="input-text ">
+                                            </p>
+
+                                            <div class="clear"></div>
+                                            <p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
+                                                <label class="" for="billing_city">Town / City <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" required value="{{city}}" placeholder="Town / City" name="city" class="input-text ">
+                                            </p>
+                                            <p >
+                                                <label >State</label>
+                                                <input type="text" value="{{state}}"   name="state" >
+                                            </p>
+                                            <div class="clear"></div>
+
+                                            
+                                            <p id="billing_postcode_field" class="form-row form-row-last address-field validate-required validate-postcode" data-o_class="form-row form-row-last address-field validate-required validate-postcode">
+                                                <label class="" for="billing_postcode">Pincode <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" required value="{{pincode}}" placeholder="pincode" id="billing_postcode" name="pincode" class="input-text ">
+                                            </p>
+
+                                            <!-- <div class="clear"></div> -->
+
+                                            <!-- <p>
+                                                <label class="" for="billing_email">Email Address <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="{{email1}}" placeholder="email1"  name="email1" class="input-text ">
+                                            </p> -->
+                                            <p>
+                                                <label >Email Address</label>
+                                                <input type="email" required value="{{email1}}" name="email1">
+                                            </p>
+
+                                            <p >
+                                                <label >Phone
+                                                </label>
+                                                <input type="text" required value="{{number}}"  name="number" >
+                                            </p>
+
+
+                                            <div class="create-account">
+                                                <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+                                                <p id="account_password_field" class="form-row validate-required">
+                                                    <label class="" for="account_password">Account password <abbr title="required" class="required">*</abbr>
+                                                    </label>
+                                                    <input type="{{type}}" {{disabled}} value="{{password}}" placeholder="Password" id="account_password" name="password" class="input-text">
+                                                </p>
+                                                <div class="clear"></div>
+
+                                            </div>
+                                            
+
+                                        </div>
+                                    </div>
+
+
+                                
+
+                                    </div>
+
+                                </div>
+
+                                <h3 id="order_review_heading">Your order</h3>
+
+                                <div id="order_review" style="position: relative;">
+                                    <table class="shop_table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-total">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for rs in cart %}
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    {{rs.title}}<strong class="product-quantity">× {{rs.quan1}} months</strong> </td>
+                                                <td class="product-total">
+                                                    <span class="amount">Rs.{{rs.price_sale}} per/mon</span> </td>
+                                                    <!-- <input type="hidden" name="pid" value={{pid}}>
+                                                    <input type="hidden" name="quan1" value={{quan1}}>
+                                                     -->
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+
+                                            <tr class="cart-subtotal">
+                                                <th>Cart Subtotal</th>
+                                                <td><span class="amount">Rs.{{order_total}}</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr class="shipping">
+                                                <th>Shipping and Handling</th>
+                                                <td>
+
+                                                    Free Shipping
+                                                    <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+                                                </td>
+                                            </tr>
+
+
+                                            <tr class="order-total">
+                                                <th>Order Total</th>
+                                                <td><strong><span class="amount">Rs.{{order_total}}</span></strong> </td>
+                                            </tr>
+
+                                        </tfoot>
+                                    </table>
+
+
+                                    <div id="payment">
+                                        <ul class="payment_methods methods">
+                                            <li class="payment_method_bacs">
+                                                <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_method" class="input-radio" id="payment_method_bacs">
+                                                <label for="payment_method_bacs">Direct Bank Transfer </label>
+                                                <div class="payment_box payment_method_bacs">
+                                                    <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                                </div>
+                                            </li>
+                                            <li class="payment_method_cheque">
+                                                <input type="radio" data-order_button_text="" value="cheque" name="payment_method" class="input-radio" id="payment_method_cheque">
+                                                <label for="payment_method_cheque">Cash On Delivery</label>
+                                                <div style="display:none;" class="payment_box payment_method_cheque">
+                                                    <p>Please have change at doorstep</p>
+                                                </div>
+                                            </li>
+                                            <li class="payment_method_paypal">
+                                                <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_method" class="input-radio" id="payment_method_paypal">
+                                                <label for="payment_method_paypal">PayPal <img alt="PayPal Acceptance Mark" src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"><a title="What is PayPal?" onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;" class="about_paypal" href="https://www.paypal.com/gb/webapps/mpp/paypal-popup">What is PayPal?</a>
+                                                </label>
+                                                <div style="display:none;" class="payment_box payment_method_paypal">
+                                                    <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <div class="form-row place-order">
+
+                                            <input type="{{type_submit}}" data-value="Place order" value="Place order" id="place_order" name="shopease" class="button alt" formaction="{{formaction}}">
+
+
+                                        </div>
+
+                                        <div class="clear"></div>
+
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>                       
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer-top-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-about-us">
+                            <h2><span>shopease</span></h2>
+                            <p></p>
+                            <div class="footer-social">
+                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">User Navigation </h2>
+                            <ul>
+                                <li><a href="/account/">My account</a></li>
+                                <li><a href="/contact/">Contact</a></li>
+                                <li><a href="/">Front page</a></li>
+                            </ul>                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">Categories</h2>
+                            <ul>
+                                <li>Beds</a></li>
+                                <li>Sofas</a></li>
+                                <li>Chairs</a></li>
+                                <li>Tables</a></li>
+                            
+                            </ul>                        
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-newsletter">
+                            <h2 class="footer-wid-title">Newsletter</h2>
+                            <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                            <div class="newsletter-form">
+                                <form action="#">
+                                    <input type="email" placeholder="Type your email">
+                                    <input type="submit" value="Subscribe">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End footer top area -->
+        
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; 2018 shopease. All Rights Reserved. <a href="" target="_blank">shopease.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="footer-card-icon">
+                            <i class="fa fa-cc-discover"></i>
+                            <i class="fa fa-cc-mastercard"></i>
+                            <i class="fa fa-cc-paypal"></i>
+                            <i class="fa fa-cc-visa"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End footer bottom area -->
+       
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        
+        <!-- jQuery sticky menu -->
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/jquery.sticky.js' %}"></script>
+        
+        <!-- jQuery easing -->
+        <script src="{% static 'js/jquery.easing.1.3.min.js' %}"></script>
+        
+        <!-- Main Script -->
+        <script src="{% static 'js/main.js' %}"></script>
+        
+        <!-- Slider -->
+        <script type="text/javascript" src="{% static 'js/bxslider.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/script.slider.js' %}"></script>
+        </body>
+    </html>

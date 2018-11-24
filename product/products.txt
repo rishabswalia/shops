@@ -1,0 +1,68 @@
+ pro1=Product(title="SpaceWood King Size Bed (Brown)",
+    price_reg="Rs 1000/month",
+    description="Bed  made with great wood.Great design at great cost.",
+    qauntity=10,
+    image="wfwe",
+    weight=40,
+    depth=200,
+    width=150,
+    height=80,
+    price_sale="Rs 799/month",
+    bestseller="yes",
+    status="available",
+    productlink="/Bed/abc/",
+    category="Bed")
+
+   pro=Product(title="Dhyanachand Bed (Brown)",
+    price_reg="Rs 899/month",
+    description="Bed  made with great wood.Great design at great cost.",
+    qauntity=12,
+    image="wfwe",
+    weight=30,
+    depth=200,
+    width=125,
+    height=6+0,
+    price_sale="Rs 699/month",
+    bestseller="no",
+    status="available",
+    productlink="/Bed/cde/",
+    category="Bed")
+
+    pro.save()
+
+
+    pro2=Product(title="Neelkamal King Size Bed(Black)",
+    price_reg="Rs 899/month",
+    description="Bed  made with great wood.Great design at great cost.",
+    qauntity=10,
+    image="wefwe",
+    weight=40,
+    depth=200,
+    width=150,
+    height=80,
+    price_sale="Rs 699/month",
+    bestseller="yes",
+    status="available",
+    productlink="/Bed/bcd/"
+    category="Bed")
+
+
+{title,
+    price_reg,
+    description,
+    qauntity,
+    image,
+    weight,
+    depth,
+    width,
+    height,
+    price_sale,
+    bestseller,
+    status,
+    date,
+    productlinl,
+    category,
+    }
+
+product-widget-area
+brands-area
